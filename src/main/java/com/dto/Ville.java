@@ -5,9 +5,26 @@ public class Ville {
     private String codeCommune;
     private String libelleAcheminement;
     private String ligne;
-    //private Coordonnee coordonnee;
     private String nomCommune;
     private String codePostal;
+    private String longitude;
+    private String latitude;
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
 
     public String getCodeCommune() {
         return codeCommune;
@@ -40,14 +57,6 @@ public class Ville {
     public void setLigne(String ligne) {
         this.ligne = ligne;
     }
-
-    /*public Coordonnee getCoordonnee() {
-        return coordonnee;
-    }
-
-    public void setCoordonnee(Coordonnee coordonnee) {
-        this.coordonnee = coordonnee;
-    }*/
 
     public String getLibelleAcheminement() {
         return libelleAcheminement;

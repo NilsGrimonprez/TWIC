@@ -8,4 +8,10 @@ import java.util.ArrayList;
 
 public interface VilleBLO {
     public ArrayList<Ville> getInfoVilles(String codePostal) throws SQLException;
+
+    public Ville addVille(Ville ville) throws SQLException;
+
+    public void deleteVille(String codeCommune) throws SQLException;
+
+    public Ville editVille(Ville ville) throws SQLException;
 }

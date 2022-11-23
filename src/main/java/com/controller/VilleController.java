@@ -14,15 +14,29 @@ public class VilleController {
     @Autowired
     VilleBLO villeBLOService;
 
-
-    @RequestMapping(value = "/ville", method = RequestMethod.GET)
-    @ResponseBody
+    @GetMapping("/ville")
     public ArrayList<Ville> get(@RequestParam(required = false, value="codePostal") String codePostal) throws SQLException {
-
-    System.out.println("get 2");
 
     ArrayList<Ville> listeVille = villeBLOService.getInfoVilles(codePostal);
 
     return listeVille;
     }
+
+    @PostMapping("/ville")
+    public Ville addVille (@RequestBody Ville ville) throws SQLException {
+        Ville ville1 = villeBLOService.addVille(ville);
+        return ville1;
+    }
+
+    @DeleteMapping("/ville")
+    public void deleteVille (@RequestParam(required = true, value="codeCommune") String codeCommune) throws SQLException{
+        villeBLOService.deleteVille(codeCommune);
+    }
+
+    @PutMapping("/ville")
+    public Ville editVille (@RequestBody Ville ville) throws SQLException{
+        Ville ville1 = villeBLOService.editVille(ville);
+        return ville1;
+    }
+
 }

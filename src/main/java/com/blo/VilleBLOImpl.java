@@ -19,4 +19,18 @@ public class VilleBLOImpl implements VilleBLO{
         listVille = villeDAO.findAllVilles();
         return listVille;
     }
+
+    public Ville addVille(Ville ville) throws SQLException {
+        Ville villeTest = villeDAO.addVille(ville);
+        return villeTest;
+    }
+
+    public void deleteVille(String codeCommune) throws SQLException{
+        villeDAO.deleteVille(codeCommune);
+    }
+
+    public Ville editVille(Ville ville) throws SQLException{
+        Ville ville1 = villeDAO.editVille(ville);
+        return ville1;
+    }
 }
