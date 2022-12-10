@@ -3,8 +3,10 @@ package com.controller;
 import com.blo.VilleBLO;
 import com.dto.Ville;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -13,13 +15,13 @@ public class VilleController {
 
     @Autowired
     VilleBLO villeBLOService;
+    public ArrayList<Ville> getInfoVilles(String codePostal) throws SQLException {
 
-    @GetMapping("/ville")
-    public ArrayList<Ville> get(@RequestParam(required = false, value="codePostal") String codePostal) throws SQLException {
+        System.out.println("get 2");
 
-    ArrayList<Ville> listeVille = villeBLOService.getInfoVilles(codePostal);
+        ArrayList<Ville> listeVille = villeBLOService.getInfoVilles(codePostal);
 
-    return listeVille;
+        return listeVille;
     }
 
     @PostMapping("/ville")
