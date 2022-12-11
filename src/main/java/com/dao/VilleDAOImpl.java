@@ -42,15 +42,30 @@ public class VilleDAOImpl implements VilleDAO {
         return listVille;
     }
 
-    public Ville findVilleByCodeCommune(String codeCommune) throws SQLException {
+    public Ville findVille(String codeCommune) throws SQLException {
         String jdbcURL = "jdbc:h2:tcp://localhost/~/test";
         Connection connection = DriverManager.getConnection(jdbcURL, "SA", "");
         System.out.println("Connected to H2 in-memory database.");
         String sql = "Select * From VILLE_FRANCE WHERE CODE_COMMUNE_INSEE = '"+codeCommune+"'";
-        Statement statement = connection.createStatement();
-        statement.executeUpdate(sql);
-        connection.close();
-        return new Ville();
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+        if (!rs.next()) {
+            return null;
+        }
+        else{
+            //while (rs.next()){
+                Ville ville = new Ville();
+                ville.setCodeCommune(rs.getString("CODE_COMMUNE_INSEE"));
+                ville.setNomCommune(rs.getString("NOM_COMMUNE"));
+                ville.setCodePostal(rs.getString("CODE_POSTAL"));
+                ville.setLibelleAcheminement(rs.getString("LIBELLE_ACHEMINEMENT"));
+                ville.setLigne(rs.getString("LIGNE_5"));
+                ville.setLatitude(rs.getString("LATITUDE"));
+                ville.setLongitude(rs.getString("LONGITUDE"));
+                connection.close();
+                return ville;
+            //}
+        }
     }
 
     public Ville addVille(Ville ville) throws SQLException {
@@ -66,7 +81,7 @@ public class VilleDAOImpl implements VilleDAO {
     }
 
     public void deleteVille(String codeCommune) throws SQLException {
-        Ville ville2 = this.findVilleByCodeCommune("01004");
+        Ville ville2 = this.findVille("01004");
         String jdbcURL = "jdbc:h2:tcp://localhost/~/test";
         Connection connection = DriverManager.getConnection(jdbcURL, "SA", "");
         System.out.println("Connected to H2 in-memory database.");

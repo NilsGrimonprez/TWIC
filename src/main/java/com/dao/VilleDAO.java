@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface VilleDAO {
+    Ville findVille(String code) throws SQLException;
+
     ArrayList<Ville> findAllVilles() throws SQLException;
 
     Ville addVille(Ville ville) throws SQLException;

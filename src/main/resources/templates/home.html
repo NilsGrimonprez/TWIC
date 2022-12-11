@@ -5,16 +5,70 @@
     <title>Home</title>
 </head>
 <body>
- <div class="page">
-    <label>
-        Choisissez une ville !
-    </label>
-     <select class="listeContainer containerStyle" id="list1" >
-         <option th:value="${ville.nomCommune}" th:each="ville: ${villes}" class="villeContainer">
-     </select>
-     <label>
-         Choisissez une autre ville !
-     </label>
- </div>
+<div class="page">
+    <div class="choix">
+        <label>
+            Choisissez une ville !
+        </label>
+        <select class="listeContainer containerStyle" id="ville1" onchange="loadVille1(this.options[this.selectedIndex].getAttribute('data-attribute1'),this.options[this.selectedIndex].getAttribute('data-attribute2'))">
+            <option th:value="${ville.nomCommune}" th:each="ville: ${villes}" th:text="${ville.nomCommune}" th:attr="data-attribute1=${ville.longitude},data-attribute2=${ville.latitude}">
+        </select>
+        <label>
+            Choisissez une autre ville !
+        </label>
+        <select class="listeContainer containerStyle" id="ville2" onchange="loadVille2(this.options[this.selectedIndex].getAttribute('data-attribute1'),this.options[this.selectedIndex].getAttribute('data-attribute2'))">
+            <option th:value="${ville.nomCommune}" th:each="ville: ${villes}" th:text="${ville.nomCommune}" th:attr="data-attribute1=${ville.longitude},data-attribute2=${ville.latitude}">
+        </select>
+    </div>
+    <div class="distance">
+        <button onclick="calculDistance()">
+            calculer la distance !
+        </button>
+    </div>
+    <div class="resultat">
+        <div id="distanceresultat">
+
+        </div>
+    </div>
+    <button onclick="window.location.pathname = '/villes'">Liste de toutes les villes</button>
+</div>
 </body>
+<script>
+    var ville1Longitude;
+    var ville1Latitude;
+    var ville2Longitude;
+    var ville2Latitude;
+    function loadVille1(var1, var2){
+        ville1Longitude = var1;
+        ville1Latitude = var2;
+    }
+    function loadVille2(var1, var2){
+        ville2Longitude = var1;
+        ville2Latitude = var2;
+    }
+    function calculDistance() {
+        const earthRadius = 6371;
+        console.log(document.getElementById("ville1").value);
+        console.log(document.getElementById("ville2").value);
+        if(document.getElementById("ville1").value === (document.getElementById("ville2").value)) {
+            document.getElementById("distanceresultat").innerHTML = "vous devez choisir deux villes différentes"
+        }
+        else{
+            const dLat = toRadians(ville2Latitude - ville1Latitude);
+            const dLon = toRadians(ville2Longitude - ville1Longitude);
+            const a =
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(toRadians(ville1Latitude)) * Math.cos(toRadians(ville2Latitude)) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            const distance = earthRadius * c; // Distance in kilometers
+            document.getElementById("distanceresultat").innerHTML = "la distance entre les deux villes est de : " + distance + "km";
+        }
+    }
+
+    function toRadians(degrees) {
+        return degrees * (Math.PI / 180);
+    }
+
+</script>
 </html>

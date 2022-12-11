@@ -14,7 +14,12 @@ public class VilleBLOImpl implements VilleBLO{
     @Autowired
     private VilleDAO villeDAO;
 
-    public ArrayList<Ville> getInfoVilles(String codePostal) throws SQLException {
+    public Ville getInfoVille(String code) throws SQLException{
+        Ville ville = villeDAO.findVille(code);
+        return ville;
+    }
+
+    public ArrayList<Ville> getInfoVilles() throws SQLException {
         ArrayList<Ville> listVille = new ArrayList<Ville>();
         listVille = villeDAO.findAllVilles();
         return listVille;

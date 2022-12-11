@@ -15,11 +15,11 @@ public class VilleController {
 
     @Autowired
     VilleBLO villeBLOService;
-    public ArrayList<Ville> getInfoVilles(String codePostal) throws SQLException {
+    public ArrayList<Ville> getInfoVilles() throws SQLException {
 
         System.out.println("get 2");
 
-        ArrayList<Ville> listeVille = villeBLOService.getInfoVilles(codePostal);
+        ArrayList<Ville> listeVille = villeBLOService.getInfoVilles();
 
         return listeVille;
     }

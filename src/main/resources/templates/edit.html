@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<form method="post" action="/edit" th:object="${ville}">
+    <p><label>
+        Code Commune :
+        <input id="codeCommune" type="text" th:field="*{codeCommune}">
+    </label></p>
+    <p><label>
+        Nom Commune :
+        <input id="nomCommune" type="text" th:field="*{nomCommune}">
+    </label></p>
+    <p><label>
+        Code Postal :
+        <input id="codePostal" type="text" th:field="*{codePostal}">
+    </label></p>
+    <p><label>
+        Libelle Acheminement :
+        <input id="libelleAcheminement" type="text" th:field="*{libelleAcheminement}">
+    </label></p>
+    <p><label>
+        Ligne :
+        <input id="ligne" type="text" th:field="*{ligne}">
+    </label></p>
+    <p><label>
+        Latitude :
+        <input id="latitude" type="text" th:field="*{latitude}">
+    </label></p>
+    <p><label>
+        Longitude :
+        <input id="longitude" type="text" th:field="*{longitude}">
+    </label></p>
+    <button type="submit">Sauvegarder</button>
+</form>
+
+</body>
+</html>

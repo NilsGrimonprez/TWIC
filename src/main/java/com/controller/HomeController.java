@@ -1,7 +1,6 @@
 package com.controller;
 
 import com.blo.VilleBLO;
-import com.blo.VilleBLOImpl;
 import com.dto.Ville;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,9 +19,8 @@ public class HomeController {
 
     @GetMapping("/ville")
     public String home(Model model) throws IOException, SQLException {
-        List<Ville> villes = villeBLO.getInfoVilles("1");
+        List<Ville> villes = villeBLO.getInfoVilles();
         model.addAttribute("villes", villes);
         return "/home";
     }
-
 }

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:each="ville : ${ville}">
+    <p th:text="${ville.getNomCommune()}"
+       th:onclick="editVille(${ville.codeCommune})">
+    </p>
+</div>
+<button th:onclick="'javascript:changePageS(' + ${numero} + ')'"
+        th:text="'aller à la page suivante '">
+</button>
+<button th:onclick="'javascript:changePageP(' + ${numero} + ')'"
+        th:text="'aller à la page précédente '">
+</button>
+<button onclick="window.location.pathname = '/ville'">Calculer une distance</button>
+</body>
+<script>
+    function changePageS(num) {
+        var v = parseInt(num) + 1;
+        window.location.href = "/villes?numero=" + v;
+    }
+
+    function changePageP(num) {
+        if (num === 1) {
+            window.location.href = "/villes";
+        } else {
+            const v = parseInt(num) - 1;
+            window.location.href = "/villes?numero=" + v;
+        }
+    }
+
+    function editVille(code){
+        window.location.href = "/edit?code=" + code;
+    }
+</script>
+</html>

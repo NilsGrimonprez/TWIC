@@ -7,7 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface VilleBLO {
-    public ArrayList<Ville> getInfoVilles(String codePostal) throws SQLException;
+    public Ville getInfoVille(String code) throws SQLException;
+
+    public ArrayList<Ville> getInfoVilles() throws SQLException;
 
     public Ville addVille(Ville ville) throws SQLException;
 
