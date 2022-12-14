@@ -81,7 +81,6 @@ public class VilleDAOImpl implements VilleDAO {
     }
 
     public void deleteVille(String codeCommune) throws SQLException {
-        Ville ville2 = this.findVille("01004");
         String jdbcURL = "jdbc:h2:tcp://localhost/~/test";
         Connection connection = DriverManager.getConnection(jdbcURL, "SA", "");
         System.out.println("Connected to H2 in-memory database.");

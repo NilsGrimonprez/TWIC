@@ -2,6 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: lightblue;
+        }
+
+        input {
+            width: 200px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid lightgray;
+        }
+
+        button {
+            padding: 10px;
+            margin: 10px 5px;
+            background-color: lightgreen;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 <form method="post" action="/edit" th:object="${ville}">
@@ -34,7 +56,18 @@
         <input id="longitude" type="text" th:field="*{longitude}">
     </label></p>
     <button type="submit">Sauvegarder</button>
-</form>
 
+
+</form>
+<button th:attr="onclick=${'deleteVille(&quot;'+ville.codeCommune+'&quot;)'}">Supprimer la ville</button>
+
+<script>
+    function deleteVille(codeCommune){
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("DELETE", "http://localhost:8181/edit?code=" + codeCommune, true);
+        xhttp.send();
+        window.location.href="/villes";
+    }
+</script>
 </body>
 </html>

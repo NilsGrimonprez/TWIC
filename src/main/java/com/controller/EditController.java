@@ -24,9 +24,14 @@ public class EditController {
         return "/edit";
     }
 
-    @PutMapping("/edit")
+    @PostMapping("/edit")
     public String editVille (@ModelAttribute("ville") Ville ville) throws SQLException{
         Ville ville1 = villeBLO.editVille(ville);
         return "/edit";
+    }
+
+    @DeleteMapping("/edit")
+    public void delete(@RequestParam(value = "code") String code) throws SQLException {
+        villeBLO.deleteVille(code);
     }
 }
