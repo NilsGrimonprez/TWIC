@@ -60,6 +60,7 @@
 
 </form>
 <button th:attr="onclick=${'deleteVille(&quot;'+ville.codeCommune+'&quot;)'}">Supprimer la ville</button>
+<button onclick="window.location.pathname = '/villes'">Liste de toutes les villes</button>
 
 <script>
     function deleteVille(codeCommune){
